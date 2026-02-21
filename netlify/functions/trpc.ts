@@ -7,7 +7,7 @@ import { createContext } from "../../server/_core/context";
 /**
  * Netlify Function: tRPC API Handler
  * 
- * Usa o adaptador fetch puro do tRPC que é mais simples e compatível com serverless.
+ * Usa o adaptador fetch puro do tRPC com timeout e tratamento de erros.
  */
 export const handler: Handler = async (event: HandlerEvent, context: HandlerContext) => {
   try {
@@ -42,8 +42,28 @@ export const handler: Handler = async (event: HandlerEvent, context: HandlerCont
         : undefined,
     });
 
-    // Usar o fetchRequestHandler do tRPC
-    const response = await fetchRequestHandler({
+    // Usar o fetchRequestHandler do tRPC com timeout
+    let response: Response | null = null;
+    let timedOut = false;
+
+    const timeoutPromise = new Promise<Response>((resolve) => {
+      setTimeout(() => {
+        timedOut = true;
+        resolve(
+          new Response(
+            JSON.stringify({
+              error: {
+                message: "Request timeout - analysis is taking too long",
+                code: "TIMEOUT",
+              },
+            }),
+            { status: 504, headers: { "content-type": "application/json" } }
+          )
+        );
+      }, 25000); // 25 segundos de timeout
+    });
+
+    const handlerPromise = fetchRequestHandler({
       endpoint: "/api/trpc",
       req: request,
       router: appRouter,
@@ -59,17 +79,26 @@ export const handler: Handler = async (event: HandlerEvent, context: HandlerCont
       },
     });
 
+    response = await Promise.race([handlerPromise, timeoutPromise]);
+
+    if (timedOut) {
+      console.log("[tRPC] Request timed out");
+    }
+
     // Extrair body
     const body = await response.text();
     const statusCode = response.status;
 
-    console.log(`[tRPC] Response: ${statusCode}`);
+    console.log(`[tRPC] Response: ${statusCode}, Body length: ${body.length}`);
 
     // Retornar resposta
     return {
       statusCode,
       headers: {
         "content-type": "application/json",
+        "access-control-allow-origin": "*",
+        "access-control-allow-methods": "GET, POST, PUT, DELETE, OPTIONS",
+        "access-control-allow-headers": "Content-Type, Authorization",
         ...Object.fromEntries(response.headers),
       },
       body,
@@ -80,7 +109,10 @@ export const handler: Handler = async (event: HandlerEvent, context: HandlerCont
       statusCode: 500,
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
-        error: error.message || "Internal Server Error",
+        error: {
+          message: error.message || "Internal Server Error",
+          code: "INTERNAL_ERROR",
+        },
       }),
     };
   }
