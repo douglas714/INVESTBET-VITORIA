@@ -2,14 +2,14 @@
 # https://docs.netlify.com/configure-builds/file-conventions/
 
 [build]
-  # Comando de build - build frontend + funções serverless
-  command = "pnpm install && pnpm build && esbuild netlify/functions/trpc.ts --platform=node --bundle --format=cjs --outdir=dist/functions"
+  # Comando de build - apenas o frontend (Netlify compila as funções automaticamente)
+  command = "pnpm install && pnpm build"
   
   # Diretório de saída (onde os arquivos estáticos serão servidos)
   publish = "dist/public"
   
-  # Diretório de funções serverless compiladas
-  functions = "dist/functions"
+  # Diretório de funções serverless (Netlify compila TypeScript automaticamente)
+  functions = "netlify/functions"
 
 [build.environment]
   # Node.js version
