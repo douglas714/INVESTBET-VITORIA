@@ -1,15 +1,15 @@
-# Netlify Configuration for Sports Betting Robot
+# Netlify Configuration for INVESTBET
 # https://docs.netlify.com/configure-builds/file-conventions/
 
 [build]
-  # Comando de build
-  command = "pnpm install && pnpm build"
+  # Comando de build - build frontend + funções serverless
+  command = "pnpm install && pnpm build && esbuild netlify/functions/trpc.ts --platform=node --packages=external --bundle --format=cjs --outdir=dist/functions"
   
   # Diretório de saída (onde os arquivos estáticos serão servidos)
   publish = "dist/public"
   
-  # Diretório de funções (se usar Netlify Functions)
-  functions = "netlify/functions"
+  # Diretório de funções serverless compiladas
+  functions = "dist/functions"
 
 [build.environment]
   # Node.js version
@@ -18,7 +18,13 @@
   # npm/pnpm version
   NPM_VERSION = "10.15.1"
 
-# Configurações de reescrita de URL (para SPA - Single Page Application)
+# Reescrita de URL para API tRPC (redireciona para função serverless)
+[[redirects]]
+  from = "/api/trpc/*"
+  to = "/.netlify/functions/trpc:splat"
+  status = 200
+
+# Reescrita de URL para SPA (Single Page Application)
 [[redirects]]
   from = "/*"
   to = "/index.html"
@@ -32,6 +38,9 @@
     X-Content-Type-Options = "nosniff"
     X-XSS-Protection = "1; mode=block"
     Referrer-Policy = "strict-origin-when-cross-origin"
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, POST, PUT, DELETE, OPTIONS"
+    Access-Control-Allow-Headers = "Content-Type, Authorization"
 
 # Cache de ativos estáticos
 [[headers]]
@@ -47,5 +56,6 @@
 # Variáveis de ambiente necessárias (configure no painel do Netlify)
 # TELEGRAM_BOT_TOKEN=seu_token_aqui
 # TELEGRAM_CHAT_ID=seu_chat_id_aqui
-# API_FOOTBALL_KEY=sua_chave_aqui (opcional)
+# API_FOOTBALL_KEY=sua_chave_aqui
+# RESULT_POLL_SECONDS=120
 # NODE_ENV=production
