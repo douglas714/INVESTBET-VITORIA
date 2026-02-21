@@ -60,7 +60,7 @@ export const handler: Handler = async (event: HandlerEvent, context: HandlerCont
             { status: 504, headers: { "content-type": "application/json" } }
           )
         );
-      }, 25000); // 25 segundos de timeout
+      }, 48000); // 48 segundos de timeout (máximo do Netlify)
     });
 
     const handlerPromise = fetchRequestHandler({
