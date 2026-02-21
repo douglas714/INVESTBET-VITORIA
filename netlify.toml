@@ -3,7 +3,7 @@
 
 [build]
   # Comando de build - build frontend + funções serverless
-  command = "pnpm install && pnpm build && esbuild netlify/functions/trpc.ts --platform=node --packages=external --bundle --format=cjs --outdir=dist/functions"
+  command = "pnpm install && pnpm build && esbuild netlify/functions/trpc.ts --platform=node --bundle --format=cjs --outdir=dist/functions"
   
   # Diretório de saída (onde os arquivos estáticos serão servidos)
   publish = "dist/public"
