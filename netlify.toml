@@ -1,27 +1,23 @@
-# Netlify Configuration for INVESTBET
-# https://docs.netlify.com/configure-builds/file-conventions/
+# Netlify Configuration for INVESTBET (Remote Access Mode)
 
 [build]
-  # Comando de build - apenas o frontend (Netlify compila as funções automaticamente)
+  # Comando de build - apenas o frontend
   command = "pnpm install && pnpm build"
   
-  # Diretório de saída (onde os arquivos estáticos serão servidos)
+  # Diretório de saída
   publish = "dist/public"
-  
-  # Diretório de funções serverless (Netlify compila TypeScript automaticamente)
-  functions = "netlify/functions"
 
 [build.environment]
-  # Node.js version
   NODE_VERSION = "22.13.0"
-  
-  # npm/pnpm version
   NPM_VERSION = "10.15.1"
 
-# Reescrita de URL para API tRPC (Prioridade Alta)
+# REGRAS DE REDIRECIONAMENTO (IMPORTANTE)
+# Substitua SEU_ENDERECO_NGROK pelo endereço que o Ngrok fornecer no seu PC.
+# Exemplo: https://meu-robo.ngrok-free.app
+
 [[redirects]]
   from = "/api/trpc/*"
-  to = "/.netlify/functions/trpc"
+  to = "https://SEU_ENDERECO_NGROK.ngrok-free.app/api/trpc/:splat"
   status = 200
   force = true
 
@@ -31,32 +27,10 @@
   to = "/index.html"
   status = 200
 
-# Headers de segurança
+# Headers de segurança e CORS
 [[headers]]
   for = "/*"
   [headers.values]
-    X-Frame-Options = "SAMEORIGIN"
-    X-Content-Type-Options = "nosniff"
-    X-XSS-Protection = "1; mode=block"
-    Referrer-Policy = "strict-origin-when-cross-origin"
     Access-Control-Allow-Origin = "*"
     Access-Control-Allow-Methods = "GET, POST, PUT, DELETE, OPTIONS"
     Access-Control-Allow-Headers = "Content-Type, Authorization"
-
-# Cache de ativos estáticos
-[[headers]]
-  for = "/dist/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "/*.html"
-  [headers.values]
-    Cache-Control = "public, max-age=0, must-revalidate"
-
-# Variáveis de ambiente necessárias (configure no painel do Netlify)
-# TELEGRAM_BOT_TOKEN=seu_token_aqui
-# TELEGRAM_CHAT_ID=seu_chat_id_aqui
-# API_FOOTBALL_KEY=sua_chave_aqui
-# RESULT_POLL_SECONDS=120
-# NODE_ENV=production
