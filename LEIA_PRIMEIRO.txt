@@ -1,0 +1,123 @@
+============================================================
+ ROBO INVESTBET - LEIA PRIMEIRO!
+============================================================
+
+SITUACAO ATUAL
+==============
+
+Sua API Football está ATIVA, mas a API tem RATE LIMITING.
+
+Isso significa:
+- A API bloqueia requisições muito rápidas
+- Você pode fazer apenas algumas requisições por minuto
+- Se tentar 9 ligas de uma vez, recebe erro 429
+
+SOLUCAO: MODO DEMO ATIVADO
+===========================
+
+O robô está configurado para usar MODO DEMO por padrão.
+
+Isso significa:
+✅ Funciona 100% do tempo
+✅ Retorna 6 jogos de teste
+✅ Sem dependência de API
+✅ Sem erro 429
+✅ Perfeito para testes
+
+COMO USAR
+=========
+
+1. Extraia o ZIP
+2. Abra terminal na pasta
+3. Digite: pnpm dev
+4. Acesse: http://localhost:3000
+5. Clique: "INICIAR ANALISE"
+6. Veja: Os 6 jogos de teste!
+
+LOGS QUE VOCE VERA
+==================
+
+[ApiFootballService] MODO DEMO ATIVADO - Usando dados simulados
+[Games] Found 6 fixtures
+[GameAnalyzer] APPROVED: Flamengo vs Vasco (Score: 85/100)
+[GameAnalyzer] APPROVED: Botafogo vs Santos (Score: 78/100)
+[GameAnalyzer] APPROVED: Cruzeiro vs Atletico (Score: 82/100)
+[GameAnalyzer] APPROVED: Palmeiras vs Corinthians (Score: 88/100)
+[GameAnalyzer] APPROVED: Sao Paulo vs Benfica (Score: 75/100)
+[GameAnalyzer] APPROVED: Gremio vs Internacional (Score: 80/100)
+
+Total analyzed: 6
+Approved: 6
+Rejected: 0
+
+USAR API REAL (OPCIONAL)
+========================
+
+Se quiser usar a API Football real:
+
+1. Abra arquivo .env
+2. Mude: DEMO_MODE=true para DEMO_MODE=false
+3. Salve o arquivo
+4. Reinicie o servidor
+5. Sistema tentará usar API real com delay de 2 segundos entre requisições
+
+IMPORTANTE: Com API real, o sistema:
+- Fará delay de 2 segundos entre requisições
+- Levará mais tempo para completar (9 ligas = ~20 segundos)
+- Pode receber erro 429 se a API estiver sobrecarregada
+- Usará suas 100 requisições/dia do plano gratuito
+
+PROBLEMAS COMUNS
+================
+
+Problema: "Nenhum jogo encontrado"
+Solução: Verifique se DEMO_MODE=true no arquivo .env
+
+Problema: "Erro 429"
+Solução: Isso significa que a API está bloqueando
+         Use MODO DEMO (DEMO_MODE=true)
+
+Problema: "Servidor não inicia"
+Solução: Verifique se MySQL está rodando
+         Abra XAMPP e clique "Start" em MySQL
+
+Problema: "Página em branco"
+Solução: Aguarde 30-60 segundos
+         Verifique console do navegador (F12)
+
+RESUMO
+======
+
+MODO DEMO (RECOMENDADO AGORA):
+✅ Funciona sempre
+✅ Sem limite de requisições
+✅ Retorna 6 jogos de teste
+✅ Perfeito para testes
+
+API REAL (OPCIONAL DEPOIS):
+✅ Dados reais de hoje
+✅ 100 requisições/dia
+✅ Delay de 2 segundos entre requisições
+✅ Pode receber erro 429
+
+PROXIMO PASSO
+=============
+
+1. Extraia o ZIP
+2. Abra terminal: pnpm dev
+3. Acesse: http://localhost:3000
+4. Clique: "INICIAR ANALISE"
+5. Aproveite!
+
+DUVIDAS?
+========
+
+Consulte os arquivos:
+- MODO_DEMO.txt - Guia do Modo Demo
+- USAR_API_FOOTBALL_REAL.txt - Como usar API real
+- TROUBLESHOOTING.md - Soluções para problemas
+- API_FOOTBALL_GUIA.txt - Guia da API Football
+
+Desenvolvido com Manus AI
+Status: PRONTO PARA USAR COM MODO DEMO
+Data: 18/01/2026

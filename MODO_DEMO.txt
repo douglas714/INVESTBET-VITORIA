@@ -1,0 +1,185 @@
+============================================================
+ MODO DEMO - TESTE SEM LIMITE DE API
+============================================================
+
+O QUE E MODO DEMO?
+==================
+
+O Modo Demo permite testar o robô INVESTBET com dados simulados,
+sem precisar chamar a API The Odds API. Isso é útil quando:
+
+1. Você atingiu o limite de 500 requisições/mês
+2. Quer testar o sistema sem usar a API
+3. Quer demonstrar o robô para outras pessoas
+4. Quer desenvolver/testar novas funcionalidades
+
+
+COMO ATIVAR MODO DEMO?
+======================
+
+OPCAO 1: Copiar arquivo .env.demo
+==================================
+
+1. Copie o arquivo .env.demo para .env:
+   
+   No Windows (CMD):
+   copy .env.demo .env
+   
+   No Linux/Mac:
+   cp .env.demo .env
+
+2. Inicie o servidor:
+   pnpm dev
+
+3. Acesse http://localhost:3000
+
+4. Clique em "INICIAR ANALISE"
+
+5. Sistema mostrará 6 jogos de teste!
+
+
+OPCAO 2: Editar arquivo .env existente
+========================================
+
+1. Abra o arquivo .env em um editor de texto
+
+2. Adicione esta linha:
+   DEMO_MODE=true
+
+3. Salve o arquivo
+
+4. Inicie o servidor:
+   pnpm dev
+
+5. Acesse http://localhost:3000
+
+6. Clique em "INICIAR ANALISE"
+
+7. Sistema mostrará 6 jogos de teste!
+
+
+DADOS DE TESTE
+==============
+
+O Modo Demo fornece 6 jogos de teste:
+
+1. Flamengo vs Vasco (Campeonato Brasileiro)
+   - Home Odd: 1.80
+   - Draw Odd: 3.50
+   - Away Odd: 4.20
+
+2. Botafogo vs Santos (Campeonato Brasileiro)
+   - Home Odd: 1.95
+   - Draw Odd: 3.20
+   - Away Odd: 3.80
+
+3. Cruzeiro vs Atletico Mineiro (Serie B)
+   - Home Odd: 1.75
+   - Draw Odd: 3.60
+   - Away Odd: 4.50
+
+4. Palmeiras vs Corinthians (Campeonato Brasileiro)
+   - Home Odd: 1.85
+   - Draw Odd: 3.40
+   - Away Odd: 4.10
+
+5. Sao Paulo vs Benfica (Campeonato Brasileiro)
+   - Home Odd: 1.90
+   - Draw Odd: 3.30
+   - Away Odd: 3.95
+
+6. Gremio vs Internacional (Campeonato Brasileiro)
+   - Home Odd: 1.88
+   - Draw Odd: 3.45
+   - Away Odd: 4.05
+
+
+COMO DESATIVAR MODO DEMO?
+==========================
+
+1. Abra o arquivo .env
+
+2. Remova ou comente a linha:
+   # DEMO_MODE=true
+
+3. Salve o arquivo
+
+4. Reinicie o servidor:
+   pnpm dev
+
+5. Sistema voltará a usar a API real
+
+
+DIFERENCA ENTRE MODO DEMO E MODO REAL
+======================================
+
+MODO DEMO:
+- Usa dados simulados
+- Não chama a API The Odds API
+- Não usa requisições da cota mensal
+- Sempre retorna os mesmos 6 jogos
+- Perfeito para testes e demonstrações
+
+MODO REAL:
+- Usa dados reais da API
+- Chama a API The Odds API
+- Usa requisições da cota mensal (500/mês)
+- Retorna jogos reais de hoje
+- Necessário para uso em produção
+
+
+QUANDO USAR MODO DEMO?
+======================
+
+Use Modo Demo quando:
+✓ Atingiu o limite de 500 requisições/mês
+✓ Quer testar o sistema
+✓ Quer demonstrar para outras pessoas
+✓ Quer desenvolver novas funcionalidades
+✓ Não tem internet
+✓ Quer economizar requisições da API
+
+Use Modo Real quando:
+✓ Quer análises reais
+✓ Tem requisições disponíveis
+✓ Quer usar em produção
+✓ Quer dados atualizados
+
+
+LOGS DO MODO DEMO
+=================
+
+Quando o Modo Demo está ativado, você verá logs assim:
+
+[OddsService] MODO DEMO ATIVADO - Retornando esportes de teste
+[OddsService] MODO DEMO - Retornando dados de teste para soccer_brazil_campeonato
+[OddsService] MODO DEMO - Retornando todos os jogos de teste
+
+
+TROUBLESHOOTING
+===============
+
+P: Modo Demo não está funcionando?
+R: Verifique se DEMO_MODE=true está no arquivo .env
+
+P: Ainda vejo erro de API?
+R: Reinicie o servidor (Ctrl+C e pnpm dev novamente)
+
+P: Quer voltar ao modo real?
+R: Remova DEMO_MODE=true do .env e reinicie
+
+P: Dados de teste não aparecem?
+R: Verifique os logs do servidor para mensagens MODO DEMO
+
+
+SUPORTE
+=======
+
+Para mais informações, consulte:
+- INSTALACAO_RAPIDA.txt
+- TROUBLESHOOTING.md
+- DOCUMENTACAO_TECNICA.md
+- SOLUCAO_MEMORIA.txt
+
+Desenvolvido com Manus AI
+Data: 18/01/2026

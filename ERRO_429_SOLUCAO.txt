@@ -1,0 +1,207 @@
+============================================================
+ SOLUCAO PARA ERRO 429 - TOO MANY REQUESTS
+============================================================
+
+PROBLEMA
+========
+
+Ao executar "INICIAR ANALISE", você recebe:
+"Request failed with status code 429"
+
+Isso significa que a API Football está bloqueando suas requisições.
+
+CAUSAS POSSIVEIS
+================
+
+1. Limite de requisições atingido
+   - Plano grátis: 100 requisições/dia
+   - Se já fez muitas análises, atingiu o limite
+
+2. Chave de API expirada ou inválida
+   - A chave pode ter sido revogada
+   - Ou não estar ativa
+
+3. Muitas requisições em pouco tempo
+   - API Football bloqueia se receber muitas requisições rápido
+   - Isso é proteção contra abuso
+
+4. Problema com headers da requisição
+   - Headers podem estar incorretos
+   - Autenticação pode estar falhando
+
+SOLUCOES
+========
+
+SOLUCAO 1: USAR MODO DEMO (RECOMENDADO - FUNCIONA AGORA!)
+===========================================================
+
+O Modo Demo usa dados simulados e NÃO depende da API!
+
+1. Abra o arquivo .env
+2. Procure por: DEMO_MODE=false
+3. Mude para: DEMO_MODE=true
+4. Salve o arquivo
+5. Reinicie o servidor (Ctrl+C e pnpm dev)
+6. Acesse http://localhost:3000
+7. Clique em "INICIAR ANALISE"
+8. Pronto! Verá 6 jogos de teste!
+
+Resultado com MODO DEMO:
+- Flamengo vs Vasco
+- Botafogo vs Santos
+- Cruzeiro vs Atletico Mineiro
+- Palmeiras vs Corinthians
+- Sao Paulo vs Benfica
+- Gremio vs Internacional
+
+
+SOLUCAO 2: AGUARDAR RESET DO LIMITE
+====================================
+
+Se atingiu o limite de 100 requisições/dia:
+
+1. Aguarde até meia-noite (horário UTC)
+2. O limite reseta automaticamente
+3. Tente novamente amanhã
+
+Você pode verificar seu uso em:
+https://dashboard.api-football.com/
+
+
+SOLUCAO 3: OBTER NOVA CHAVE DE API
+===================================
+
+Se a chave está inválida ou expirada:
+
+1. Acesse https://dashboard.api-football.com/
+2. Faça login com sua conta
+3. Vá para "API Keys"
+4. Gere uma nova chave
+5. Copie a chave
+6. Abra .env
+7. Procure por: API_FOOTBALL_KEY=
+8. Substitua pela nova chave
+9. Salve o arquivo
+10. Reinicie o servidor
+
+
+SOLUCAO 4: FAZER UPGRADE DO PLANO
+==================================
+
+Se quer usar a API sem limitações:
+
+1. Acesse https://dashboard.api-football.com/
+2. Vá para "Plans"
+3. Escolha um plano pago
+4. Os planos pagos têm mais requisições/dia
+5. Após upgrade, use a nova chave
+
+
+SOLUCAO 5: USAR OUTRA API
+==========================
+
+Se a API Football não funcionar, você pode usar:
+
+1. The Odds API (já estava integrada antes)
+   - Limite: 500 requisições/mês
+   - Menos dados
+
+2. Outras APIs de futebol
+   - Existem várias alternativas
+   - Algumas com melhor cobertura
+
+Para voltar a usar The Odds API:
+- Abra .env
+- Mude: DEMO_MODE=false
+- O sistema tentará usar The Odds API
+
+
+VERIFICACAO
+===========
+
+Para verificar qual API está sendo usada:
+
+1. Abra o terminal
+2. Procure por logs do servidor
+3. Se vir "[OddsService]" = The Odds API
+4. Se vir "[ApiFootballService]" = API Football
+5. Se vir "[MODO DEMO]" = Dados simulados
+
+
+RECOMENDACAO FINAL
+===================
+
+Tente nesta ordem:
+
+1. PRIMEIRO: Use MODO DEMO (funciona 100%)
+   - Mude DEMO_MODE=true
+   - Reinicie servidor
+   - Teste os 6 jogos simulados
+
+2. SE QUISER API REAL: Aguarde reset do limite
+   - Espere até meia-noite UTC
+   - Tente novamente amanhã
+
+3. SE LIMITE CONTINUAR: Obtenha nova chave
+   - Gere nova chave em dashboard
+   - Atualize .env
+   - Reinicie servidor
+
+4. SE TUDO FALHAR: Faça upgrade
+   - Planos pagos têm mais requisições
+   - Melhor suporte
+
+
+MODO DEMO vs MODO REAL
+======================
+
+MODO DEMO:
+- Usa dados simulados
+- Não chama API
+- Funciona 100% do tempo
+- Perfeito para testes
+- Sem limite de requisições
+- Sempre retorna os mesmos 6 jogos
+
+MODO REAL:
+- Usa dados reais da API
+- Chama API Football
+- Pode falhar se limite atingido
+- Dados atualizados
+- Limite de requisições
+- Retorna jogos reais de hoje
+
+
+LOGS PARA DIAGNOSTICAR
+======================
+
+Abra o terminal e procure por:
+
+Se vir:
+"[ApiFootballService] Fetching fixtures for league 71"
+= Tentando usar API Football
+
+Se vir:
+"[OddsService] MODO DEMO ATIVADO"
+= Usando Modo Demo
+
+Se vir:
+"Request failed with status code 429"
+= Limite de requisições atingido
+
+Se vir:
+"Request failed with status code 404"
+= Chave de API inválida
+
+
+SUPORTE
+=======
+
+Dúvidas? Consulte:
+- MODO_DEMO.txt
+- API_FOOTBALL_GUIA.txt
+- TROUBLESHOOTING.md
+- INSTALACAO_RAPIDA.txt
+
+Desenvolvido com Manus AI
+Data: 18/01/2026

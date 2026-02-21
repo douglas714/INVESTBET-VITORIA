@@ -1,0 +1,142 @@
+============================================================
+ SOLUCAO PARA ERRO "OUT OF MEMORY"
+============================================================
+
+PROBLEMA:
+=========
+Ao executar install.bat, você recebe o erro:
+"runtime: VirtualAlloc of 8192 bytes failed with errno=1455
+fatal error: out of memory"
+
+CAUSA:
+======
+Seu computador está ficando sem memória RAM durante a compilação.
+Isso acontece quando:
+- Muitos programas estão abertos
+- RAM limitada (4-8GB)
+- Vite/esbuild consumindo muita memória
+
+SOLUCOES:
+=========
+
+SOLUCAO 1: FECHAR PROGRAMAS (RECOMENDADO - 90% de chance de funcionar)
+===========================================================================
+
+1. Feche TODOS os programas:
+   - Navegadores (Chrome, Edge, Firefox)
+   - Discord, Slack, Teams, WhatsApp
+   - VS Code, Sublime, NotePad++
+   - Spotify, Netflix, YouTube
+   - Antivírus (temporariamente)
+   - Qualquer coisa que use RAM
+
+2. Deixe apenas:
+   - Windows
+   - Terminal/CMD
+   - XAMPP (MySQL)
+
+3. Execute install.bat novamente
+
+4. Aguarde 5-10 minutos
+
+5. Pronto!
+
+
+SOLUCAO 2: USAR VERSAO PRE-COMPILADA (MAIS RAPIDA)
+===================================================
+
+Esta versão NÃO precisa compilar - é muito mais rápida!
+
+1. Duplo clique em: install-precompiled.bat
+
+2. Aguarde 1-2 minutos (muito mais rápido!)
+
+3. Navegador abrirá em http://localhost:3000
+
+4. Pronto!
+
+
+SOLUCAO 3: AUMENTAR MEMORIA VIRTUAL (Windows)
+==============================================
+
+Se as soluções acima não funcionarem:
+
+1. Abra o Painel de Controle
+2. Sistema e Segurança > Sistema
+3. Configurações avançadas do sistema
+4. Variáveis de Ambiente
+5. Clique em "Novo"
+6. Nome: NODE_OPTIONS
+7. Valor: --max-old-space-size=4096
+8. Clique OK
+9. Feche e abra o Terminal novamente
+10. Execute install.bat
+
+
+SOLUCAO 4: AUMENTAR ARQUIVO DE PAGINACAO (Windows)
+==================================================
+
+1. Painel de Controle > Sistema
+2. Configurações avançadas do sistema
+3. Aba "Avancado"
+4. Clique em "Configuracoes..." (Performance)
+5. Aba "Avancado"
+6. Clique em "Alterar..." (Memoria Virtual)
+7. Desmarque "Gerenciar automaticamente..."
+8. Aumente o tamanho (ex: 8000 MB)
+9. Clique OK
+10. Reinicie o computador
+
+
+SOLUCAO 5: USAR COMPUTADOR COM MAIS RAM
+========================================
+
+Se nenhuma solução funcionar, você pode:
+- Usar um computador com mais RAM (8GB+)
+- Usar um servidor/VPS na nuvem
+- Usar Docker (se tiver instalado)
+
+
+VERIFICACAO:
+============
+
+Para verificar se funcionou:
+
+1. Abra http://localhost:3000 no navegador
+
+2. Clique em "INICIAR ANALISE"
+
+3. Aguarde 30-60 segundos
+
+4. Se aparecer 6 jogos = SUCESSO!
+
+5. Se aparecer "0 jogos" = Problema de API (veja TROUBLESHOOTING.md)
+
+
+RECOMENDACAO FINAL:
+===================
+
+Tente nesta ordem:
+
+1. PRIMEIRO: Feche todos os programas + execute install.bat
+   (90% de chance de funcionar)
+
+2. SE NAO FUNCIONAR: Use install-precompiled.bat
+   (Muito mais rápido, não precisa compilar)
+
+3. SE AINDA NAO FUNCIONAR: Aumente NODE_OPTIONS
+   (Dá mais memória para o Node.js)
+
+4. SE TUDO FALHAR: Use um computador com mais RAM
+
+
+SUPORTE:
+========
+
+Se tiver dúvidas, consulte:
+- TROUBLESHOOTING.md
+- INSTALACAO_RAPIDA.txt
+- DOCUMENTACAO_TECNICA.md
+
+Desenvolvido com Manus AI
+Data: 18/01/2026

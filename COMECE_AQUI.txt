@@ -1,0 +1,115 @@
+╔══════════════════════════════════════════════════════════════════╗
+║                                                                  ║
+║         🚀 SPORTS BETTING ROBOT - COMECE AQUI 🚀                ║
+║                                                                  ║
+║              Guia rápido de instalação em 3 passos              ║
+║                                                                  ║
+╚══════════════════════════════════════════════════════════════════╝
+
+
+📋 PRÉ-REQUISITOS
+═══════════════════════════════════════════════════════════════════
+
+✓ Node.js 18+ (https://nodejs.org/)
+✓ XAMPP (será instalado automaticamente)
+
+
+🚀 INSTALAÇÃO RÁPIDA (3 PASSOS)
+═══════════════════════════════════════════════════════════════════
+
+PASSO 1: Instalar Node.js
+─────────────────────────
+1. Acesse: https://nodejs.org/
+2. Baixe a versão LTS (recomendada)
+3. Execute o instalador
+4. Aceite todas as opções padrão
+5. Reinicie o computador
+
+
+PASSO 2: Instalar XAMPP (Banco de Dados)
+─────────────────────────────────────────
+1. Duplo clique em: install-xampp.bat
+2. Aguarde o download e instalação
+3. Clique "Next" quando aparecer a janela
+4. Deixe a pasta padrão: C:\xampp
+5. Aguarde a conclusão
+
+
+PASSO 3: Iniciar o Sports Betting Robot
+────────────────────────────────────────
+1. Duplo clique em: setup.bat
+2. Aguarde a instalação completa (2-5 minutos)
+3. Quando terminar, acesse: http://localhost:3000
+4. Pronto! O sistema está rodando!
+
+
+📊 USANDO O SISTEMA
+═══════════════════════════════════════════════════════════════════
+
+1. Acesse http://localhost:3000 no navegador
+2. Clique em "INICIAR ANÁLISE"
+3. Aguarde o sistema buscar os jogos
+4. Veja os resultados com status visual:
+   🟡 Aguardando - Jogo ainda não começou
+   🟢 GREEN - Time da casa venceu
+   🔴 RED - Empate ou derrota
+5. Clique em "Histórico" para ver análises anteriores
+
+
+⚠️ IMPORTANTE
+═══════════════════════════════════════════════════════════════════
+
+• O XAMPP DEVE estar rodando para o sistema funcionar
+• Se fechar o setup.bat, o servidor para
+• Para parar o servidor: Pressione Ctrl+C no terminal
+• Para reiniciar: Duplo clique em setup.bat novamente
+
+
+🔧 SOLUÇÃO DE PROBLEMAS
+═══════════════════════════════════════════════════════════════════
+
+PROBLEMA: "Node.js não encontrado"
+SOLUÇÃO: Instale Node.js em https://nodejs.org/
+
+PROBLEMA: "XAMPP não instalou"
+SOLUÇÃO: Baixe manualmente em https://www.apachefriends.org/
+
+PROBLEMA: "Porta 3000 já está em uso"
+SOLUÇÃO: Feche outros programas ou reinicie o computador
+
+PROBLEMA: "Nenhum jogo encontrado"
+SOLUÇÃO: Pode não haver jogos no momento, tente novamente depois
+
+PROBLEMA: "Erro de conexão com banco de dados"
+SOLUÇÃO: 
+1. Abra XAMPP Control Panel
+2. Clique em "Start" ao lado de MySQL
+3. Aguarde alguns segundos
+4. Execute setup.bat novamente
+
+
+📞 SUPORTE
+═══════════════════════════════════════════════════════════════════
+
+Para mais informações, consulte:
+• README.md - Documentação completa
+• INSTALACAO.txt - Guia detalhado de instalação
+
+
+🎯 FUNCIONALIDADES
+═══════════════════════════════════════════════════════════════════
+
+✓ Análise automática de apostas esportivas
+✓ Filtro inteligente com 3 critérios
+✓ Seleção dos 6 melhores jogos
+✓ Monitoramento em tempo real
+✓ Histórico de análises
+✓ Estatísticas de greens e reds
+✓ Interface elegante e moderna
+
+
+═══════════════════════════════════════════════════════════════════
+              Desenvolvido com Manus AI 🤖
+═══════════════════════════════════════════════════════════════════
+
+Próxima ação: Duplo clique em install-xampp.bat

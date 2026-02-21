@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1768741799825,
+      "tag": "0000_bored_maggott",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1768741969275,
+      "tag": "0001_superb_rockslide",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1768744715934,
+      "tag": "0002_panoramic_kylun",
+      "breakpoints": true
+    }
+  ]
+}

@@ -1,0 +1,284 @@
+============================================================
+ GUIA DE INTEGRACAO - API FOOTBALL
+============================================================
+
+O QUE E API FOOTBALL?
+=====================
+
+API Football (api-football-v3.p.rapidapi.com) é uma das melhores
+APIs de futebol disponíveis. Oferece:
+
+✓ Dados de 600+ ligas de futebol
+✓ Odds em tempo real
+✓ Estatísticas detalhadas de times
+✓ Histórico de confrontos (H2H)
+✓ Standings e classificações
+✓ Informações de jogadores
+✓ Sem limite de requisições (plano pago)
+✓ Muito mais confiável que The Odds API
+
+
+POR QUE USAR API FOOTBALL?
+==========================
+
+1. Melhor Cobertura
+   - The Odds API: 17 ligas
+   - API Football: 600+ ligas
+
+2. Mais Dados
+   - Estatísticas completas de times
+   - Histórico de confrontos
+   - Informações de jogadores
+   - Odds de múltiplos bookmakers
+
+3. Melhor Confiabilidade
+   - Menos erros
+   - Melhor uptime
+   - Suporte técnico
+
+4. Sem Limite de Requisições
+   - The Odds API: 500 requisições/mês (grátis)
+   - API Football: Ilimitado (plano pago)
+
+
+COMO CONFIGURAR?
+================
+
+PASSO 1: Obter Chave de API
+=============================
+
+1. Acesse https://dashboard.api-football.com/
+2. Faça login com sua conta
+3. Copie sua chave de API (x-rapidapi-key)
+4. Guarde em um lugar seguro
+
+Sua chave: b777a7ec79ea43903c6fe77838d92037
+
+
+PASSO 2: Adicionar ao Arquivo .env
+===================================
+
+1. Abra o arquivo .env em um editor de texto
+
+2. Encontre a linha:
+   # API_FOOTBALL_KEY=
+
+3. Adicione sua chave:
+   API_FOOTBALL_KEY=b777a7ec79ea43903c6fe77838d92037
+
+4. Salve o arquivo
+
+
+PASSO 3: Reiniciar o Servidor
+==============================
+
+1. Pare o servidor (Ctrl+C)
+2. Inicie novamente:
+   pnpm dev
+3. Acesse http://localhost:3000
+
+
+FUNCIONALIDADES IMPLEMENTADAS
+==============================
+
+1. Fetch Today Fixtures
+   - Busca todos os jogos de hoje
+   - Retorna odds em tempo real
+   - Filtra apenas jogos não iniciados
+
+2. Fetch League Fixtures
+   - Busca jogos de uma liga específica
+   - Próximos 7 dias
+   - Com odds
+
+3. Fetch Team Stats
+   - Estatísticas de um time
+   - Vitórias, empates, derrotas
+   - Gols pró e contra
+   - Taxa de vitória
+
+4. Fetch Head to Head
+   - Histórico de confrontos entre 2 times
+   - Últimos 10 jogos
+   - Resultados e gols
+
+5. Fetch Standings
+   - Classificação de uma liga
+   - Posição de cada time
+   - Pontos, vitórias, etc
+
+6. Fetch Fixture Odds
+   - Odds detalhadas de um jogo
+   - Múltiplos bookmakers
+   - Diferentes tipos de apostas
+
+
+LIGAS SUPORTADAS
+================
+
+Brasil:
+- Serie A (71)
+- Serie B (72)
+
+Argentina:
+- Primera Division (128)
+
+Inglaterra:
+- Premier League (39)
+- Championship (40)
+
+Espanha:
+- La Liga (135)
+
+Itália:
+- Serie A (140)
+
+França:
+- Ligue 1 (61)
+
+Alemanha:
+- Bundesliga (78)
+
++ 600 outras ligas!
+
+
+CRITERIOS DE ANALISE
+====================
+
+O robô analisa cada jogo usando 3 critérios:
+
+1. Home Odd < 2.0
+   - Time da casa é favorito
+   - Odd baixa indica confiança
+
+2. Away Odd > 3.0
+   - Time visitante tem odd alta
+   - Indica maior dificuldade
+
+3. Odds Order Check
+   - Home < Draw < Away
+   - Ordem correta das odds
+
+Score de Aprovação:
+- Critério 1: 30 pontos
+- Critério 2: 30 pontos
+- Critério 3: 20 pontos
+- Bonus (stats): 20 pontos
+- Total: 100 pontos
+
+Aprovado: Score >= 60
+
+
+EXEMPLO DE USO
+==============
+
+1. Abra http://localhost:3000
+
+2. Clique em "INICIAR ANALISE"
+
+3. Sistema faz:
+   - Busca todos os jogos de hoje
+   - Busca estatísticas de cada time
+   - Busca histórico H2H
+   - Analisa cada jogo
+   - Retorna top 6 aprovados
+
+4. Veja os resultados:
+   - Jogo
+   - Liga
+   - Odds (Home/Draw/Away)
+   - Score de aprovação
+   - Motivo da rejeição (se rejeitado)
+
+
+TROUBLESHOOTING
+===============
+
+P: Erro "API_FOOTBALL_KEY is not configured"?
+R: Adicione API_FOOTBALL_KEY=sua_chave ao arquivo .env
+
+P: Erro "401 Unauthorized"?
+R: Verifique se a chave está correta
+
+P: Erro "429 Too Many Requests"?
+R: Você atingiu o limite de requisições da sua conta
+   Upgrade para plano pago em https://dashboard.api-football.com/
+
+P: Nenhum jogo aparece?
+R: Pode não haver jogos hoje
+   Tente amanhã ou use MODO_DEMO=true
+
+P: Odds aparecem como null?
+R: Nem todos os jogos têm odds disponíveis
+   Sistema filtra automaticamente
+
+
+PLANOS DISPONIVEIS
+===================
+
+Free:
+- 100 requisições/dia
+- Acesso básico
+- Perfeito para testes
+
+Pro:
+- 1000 requisições/dia
+- Acesso completo
+- Recomendado para uso regular
+
+Elite:
+- Ilimitado
+- Acesso prioritário
+- Para uso em produção
+
+
+COMPARACAO: API FOOTBALL vs THE ODDS API
+=========================================
+
+                    API Football    The Odds API
+Ligas               600+            17
+Dados               Completos       Básicos
+Odds                Sim             Sim
+Stats               Sim             Não
+H2H                 Sim             Não
+Limite Grátis       100/dia         500/mês
+Preço               Acessível       Caro
+Confiabilidade      Excelente       Boa
+Suporte             Bom             Limitado
+
+
+DOCUMENTACAO COMPLETA
+=====================
+
+Para mais informações:
+https://www.api-football.com/documentation
+
+Endpoints principais:
+- /fixtures - Buscar jogos
+- /teams/statistics - Estatísticas
+- /standings - Classificação
+- /fixtures/headtohead - Confrontos
+- /fixtures/odds - Odds
+
+
+PROXIMOS PASSOS
+===============
+
+1. Adicione API_FOOTBALL_KEY ao .env
+2. Reinicie o servidor
+3. Teste em http://localhost:3000
+4. Clique em "INICIAR ANALISE"
+5. Veja os jogos analisados!
+
+
+SUPORTE
+=======
+
+Dúvidas? Consulte:
+- API_FOOTBALL_GUIA.txt (este arquivo)
+- DOCUMENTACAO_TECNICA.md
+- TROUBLESHOOTING.md
+- https://www.api-football.com/documentation
+
+Desenvolvido com Manus AI
+Data: 18/01/2026

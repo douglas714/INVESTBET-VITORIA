@@ -1,0 +1,51 @@
+# Netlify Configuration for Sports Betting Robot
+# https://docs.netlify.com/configure-builds/file-conventions/
+
+[build]
+  # Comando de build
+  command = "pnpm install && pnpm build"
+  
+  # Diretório de saída (onde os arquivos estáticos serão servidos)
+  publish = "dist/public"
+  
+  # Diretório de funções (se usar Netlify Functions)
+  functions = "netlify/functions"
+
+[build.environment]
+  # Node.js version
+  NODE_VERSION = "22.13.0"
+  
+  # npm/pnpm version
+  NPM_VERSION = "10.15.1"
+
+# Configurações de reescrita de URL (para SPA - Single Page Application)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Headers de segurança
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Cache de ativos estáticos
+[[headers]]
+  for = "/dist/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Variáveis de ambiente necessárias (configure no painel do Netlify)
+# TELEGRAM_BOT_TOKEN=seu_token_aqui
+# TELEGRAM_CHAT_ID=seu_chat_id_aqui
+# API_FOOTBALL_KEY=sua_chave_aqui (opcional)
+# NODE_ENV=production
