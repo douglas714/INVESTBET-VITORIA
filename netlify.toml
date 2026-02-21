@@ -18,13 +18,14 @@
   # npm/pnpm version
   NPM_VERSION = "10.15.1"
 
-# Reescrita de URL para API tRPC (redireciona para função serverless)
+# Reescrita de URL para API tRPC (Prioridade Alta)
 [[redirects]]
   from = "/api/trpc/*"
-  to = "/.netlify/functions/trpc:splat"
+  to = "/.netlify/functions/trpc"
   status = 200
+  force = true
 
-# Reescrita de URL para SPA (Single Page Application)
+# Reescrita de URL para SPA (Fallback)
 [[redirects]]
   from = "/*"
   to = "/index.html"
